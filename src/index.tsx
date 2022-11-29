@@ -10,31 +10,37 @@ const LINKING_ERROR =
 const IdChecker = NativeModules.IdChecker
   ? NativeModules.IdChecker
   : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+    {},
+    {
+      get() {
+        throw new Error(LINKING_ERROR);
+      },
+    }
+  );
 
-  //   const CalendarModule = NativeModules.Calendar
-  // ? NativeModules.Calendar
-  // : new Proxy(
-  //     {},
-  //     {
-  //       get() {
-  //         throw new Error(LINKING_ERROR);
-  //       },
-  //     }
-  //   );
+//   const CalendarModule = NativeModules.Calendar
+// ? NativeModules.Calendar
+// : new Proxy(
+//     {},
+//     {
+//       get() {
+//         throw new Error(LINKING_ERROR);
+//       },
+//     }
+//   );
 
 export function multiply(a: number, b: number): Promise<number> {
-  return IdChecker.multiply(a, b) ;
+  return IdChecker.multiply(a, b);
 }
 
-export function getCalendar() {
-  IdChecker.createCalendarEvent("heloo","hihi",() => {
-    console.log("heslo basby")
+export function checkIdInfo({
+  handleCallback
+}: {
+  handleCallback: (value: any) => void
+}) {
+  IdChecker.checkId((value: any) => {
+    // console.log("heslo basby_____ :: ",value)
+    if(!value) return
+    handleCallback(value)
   })
 }
