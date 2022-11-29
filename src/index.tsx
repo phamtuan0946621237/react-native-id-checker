@@ -18,23 +18,23 @@ const IdChecker = NativeModules.IdChecker
       }
     );
 
-    const CalendarModule = NativeModules.Calendar
-  ? NativeModules.Calendar
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+  //   const CalendarModule = NativeModules.Calendar
+  // ? NativeModules.Calendar
+  // : new Proxy(
+  //     {},
+  //     {
+  //       get() {
+  //         throw new Error(LINKING_ERROR);
+  //       },
+  //     }
+  //   );
 
 export function multiply(a: number, b: number): Promise<number> {
-  return IdChecker.multiply(a, b) + 1;
+  return IdChecker.multiply(a, b) ;
 }
 
 export function getCalendar() {
-  CalendarModule.createCalendarEvent("heloo","hihi",() => {
+  IdChecker.createCalendarEvent("heloo","hihi",() => {
     console.log("heslo basby")
   })
 }

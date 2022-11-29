@@ -29,9 +29,11 @@ buildscript {
 }
 
 allprojects {
+  repositories {
    google()
         jcenter()
         maven { url 'https://www.jitpack.io' }
+  }
 }
 def isNewArchitectureEnabled() {
   return rootProject.hasProperty("newArchEnabled") &&  rootProject.getProperty("newArchEnabled") == "true"
