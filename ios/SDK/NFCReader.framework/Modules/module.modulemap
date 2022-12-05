@@ -1,0 +1,4 @@
+framework module NFCReader {
+  header "NFCReader-Swift.h"
+  requires objc
+}
