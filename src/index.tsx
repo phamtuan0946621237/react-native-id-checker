@@ -29,9 +29,9 @@ const IdChecker = NativeModules.IdChecker
 //     }
 //   );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return IdChecker.multiply(a, b);
-}
+// export function multiply(a: number, b: number): Promise<number> {
+//   return IdChecker.multiply(a, b);
+// }
 
 export function checkIdInfo({
   handleCallback
@@ -42,5 +42,12 @@ export function checkIdInfo({
     // console.log("heslo basby_____ :: ",value)
     if(!value) return
     handleCallback(value)
+  })
+}
+
+export function checkIdIos(callBack ?: (value : any) => void) {
+  NativeModules.IdChecker.increment((value : any) => {
+    console.log("value :::",value)
+    if (!!callBack) callBack(value)
   })
 }
