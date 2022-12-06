@@ -8,7 +8,7 @@ class IdChecker: NSObject, NFCDelegate {
     var handleCallback:RCTResponseSenderBlock?
     var response : [String : Any]?
     func NFCNotAvaiable() {
-        print("NFCNotAvaiable :::")
+        print("NFCNotAvaiable___ :::")
 //        let resultsDict = [
 //            "success" : false,
 //            "data" : "NFCNotAvaiable"
