@@ -94,7 +94,7 @@ class IdChecker: NSObject, NFCDelegate {
         
     }
     @objc
-    func increment(
+    func checkId(
         _ cardID: String, dateOfBirthYYMMDD: String, dateOfExpireYYMMDD: String,callback : @escaping RCTResponseSenderBlock
     ) -> Void{
     let nfc = NFCManager(dateOfBirthYYMMDD: dateOfBirthYYMMDD,

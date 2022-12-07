@@ -34,14 +34,16 @@ const IdChecker = NativeModules.IdChecker
 // }
 
 export function checkIdInfo({
-  handleCallback
+  infoCard,
+  callBack
 }: {
-  handleCallback: (value: any) => void
+  infoCard : InfoCardIdType,
+  callBack: (value: any) => void
 }) {
-  IdChecker.checkId((value: any) => {
+  IdChecker.checkId(infoCard?.cardId,infoCard?.dateOfBirthYYMMDD,infoCard?.dateOfExpireYYMMDD,(value: any) => {
     // console.log("heslo basby_____ :: ",value)
     if(!value) return
-    handleCallback(value)
+    if (!!callBack)  callBack(value)
   })
 }
 
@@ -51,11 +53,11 @@ interface InfoCardIdType {
   dateOfExpireYYMMDD : string
 }
 
-export function checkIdIos(
-  params : InfoCardIdType,
-  callBack ?: (value : any) => void) {
-  NativeModules.IdChecker.increment(params?.cardId,params?.dateOfBirthYYMMDD,params?.dateOfExpireYYMMDD,(value : any) => {
-      console.log("value :::",value)
-      if (!!callBack) callBack(value)
-    },)
-}
+// export function checkIdIos(
+//   params : InfoCardIdType,
+//   callBack ?: (value : any) => void) {
+//   NativeModules.IdChecker.checkId(params?.cardId,params?.dateOfBirthYYMMDD,params?.dateOfExpireYYMMDD,(value : any) => {
+//       console.log("value :::",value)
+//       if (!!callBack) callBack(value)
+//     },)
+// }

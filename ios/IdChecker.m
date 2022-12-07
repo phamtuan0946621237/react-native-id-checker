@@ -6,7 +6,7 @@
 //                  withResolver:(RCTPromiseResolveBlock)resolve
 //                  withRejecter:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(increment:
+RCT_EXTERN_METHOD(checkId:
 //                  (RCTResponseSenderBlock)callback
 //                  name:(NSString *)name location:(NSString *)location date:(NSString *)date
                   (NSString *)cardID dateOfBirthYYMMDD:(NSString *)dateOfBirthYYMMDD dateOfExpireYYMMDD:(NSString *)dateOfExpireYYMMDD callback:(RCTResponseSenderBlock)callback
