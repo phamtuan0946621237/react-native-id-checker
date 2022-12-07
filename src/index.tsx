@@ -45,9 +45,17 @@ export function checkIdInfo({
   })
 }
 
-export function checkIdIos(callBack ?: (value : any) => void) {
-  NativeModules.IdChecker.increment((value : any) => {
-    console.log("value :::",value)
-    if (!!callBack) callBack(value)
-  })
+interface InfoCardIdType {
+  cardId : string,
+  dateOfBirthYYMMDD : string,
+  dateOfExpireYYMMDD : string
+}
+
+export function checkIdIos(
+  params : InfoCardIdType,
+  callBack ?: (value : any) => void) {
+  NativeModules.IdChecker.increment(params?.cardId,params?.dateOfBirthYYMMDD,params?.dateOfExpireYYMMDD,(value : any) => {
+      console.log("value :::",value)
+      if (!!callBack) callBack(value)
+    },)
 }

@@ -21,61 +21,85 @@ class IdChecker: NSObject, NFCDelegate {
     // Đọc NFC thành công
     func NFCSuccess(model: NFCReader.NFCPassportModel) {
            print("NFCSuccess ::",model)
+           if (self.handleCallback == nil) {
+            return
+        }
         DispatchQueue.main.async {
             let resultsDict = [
                 "success" : true,
                 "data" : "NFCSuccess"
                 // "data" : count
             ] as [String : Any];
-            self.handleCallback!([resultsDict])
+            if (self.handleCallback != nil){
+                    self.handleCallback!([resultsDict])
+                }
+                    self.handleCallback = nil
         }
         
     }
     // Đọc NFC thất bại
     func NFCFail(_ error: NFCReader.NFCPassportReaderError) {
-        
         // Xử lý trong main queue
-        
-        DispatchQueue.main.async {
-            print("NFCFail :::",error)
-                 let resultsDict = [
-                     "success" : false,
-                      "data" : "NFCFail"
-                 ] as [String : Any];
-            self.handleCallback!([resultsDict])
+        if (self.handleCallback == nil) {
+            return
         }
+            DispatchQueue.main.async {
+                print("NFCFail :::",error)
+                     let resultsDict = [
+                         "success" : false,
+                          "data" : "NFCFail"
+                     ] as [String : Any];
+                if (self.handleCallback != nil){
+                    self.handleCallback!([resultsDict])
+                }
+                    self.handleCallback = nil
+            }
+        
     }
     // Hoàn thành xác thực NFC, trả về thông tin dạng Json
     func VerifySuccess(jsonData: NFCReader.JSON) {
         print("VerifySuccess ::",jsonData)
+        if (self.handleCallback == nil) {
+            return
+        }
         DispatchQueue.main.async {
             let resultsDict = [
                 "success" : true,
                 "data" : "VerifySuccess"
             ] as [String : Any];
-            self.handleCallback!([resultsDict])
+             if (self.handleCallback != nil){
+                    self.handleCallback!([resultsDict])
+                }
+                    self.handleCallback = nil
         }
         
     }
     // Xác thực NFC bị lỗi
     func VerifyFail(_ error: NFCReader.AFError) {
+        print("self.handleCallback ::",self.handleCallback as Any)
         print("VerifyFail ::",error)
-        DispatchQueue.main.async {
-            let resultsDict = [
-                "success" : false,
-                 "data" : "VerifyFail"
-            ] as [String : Any];
-            self.handleCallback!([resultsDict])
+        if (self.handleCallback == nil) {
+            return
         }
+       DispatchQueue.main.async {
+           let resultsDict = [
+               "success" : false,
+                "data" : "VerifyFail"
+           ] as [String : Any];
+           if (self.handleCallback != nil){
+                    self.handleCallback!([resultsDict])
+                }
+                    self.handleCallback = nil
+       }
         
     }
-     @objc
-    func increment(_ callback : @escaping RCTResponseSenderBlock) {
-
-
-    let nfc = NFCManager(dateOfBirthYYMMDD: "970920",
-                             dateOfExpireYYMMDD: "370920",
-                             cardID: "036097014565",
+    @objc
+    func increment(
+        _ cardID: String, dateOfBirthYYMMDD: String, dateOfExpireYYMMDD: String,callback : @escaping RCTResponseSenderBlock
+    ) -> Void{
+    let nfc = NFCManager(dateOfBirthYYMMDD: dateOfBirthYYMMDD,
+                             dateOfExpireYYMMDD: dateOfExpireYYMMDD,
+                             cardID: cardID,
                              isCheckBCA: true)
         
         // Set URL API
@@ -85,9 +109,10 @@ class IdChecker: NSObject, NFCDelegate {
         nfc.scanPassport()
 //        print("a:::",a)
 //        if (!!a) {
-            self.handleCallback = callback
+            
 //        }
         nfc.delegate = self;
+       self.handleCallback = callback
         
  }
 
