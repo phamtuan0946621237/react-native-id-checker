@@ -9,13 +9,6 @@ class IdChecker: NSObject, NFCDelegate {
     var response : [String : Any]?
     func NFCNotAvaiable() {
         print("NFCNotAvaiable___ :::")
-//        let resultsDict = [
-//            "success" : false,
-//            "data" : "NFCNotAvaiable"
-//            // "data" : count
-//        ] as [String : Any];
-//        handleCallback!([resultsDict])
-//        self.errorAlert("Thiết bị không hỗ trợ hoặc không được bật NFC")
     }
 
     // Đọc NFC thành công
@@ -28,7 +21,6 @@ class IdChecker: NSObject, NFCDelegate {
             let resultsDict = [
                 "success" : true,
                 "data" : "NFCSuccess"
-                // "data" : count
             ] as [String : Any];
             if (self.handleCallback != nil){
                     self.handleCallback!([resultsDict])
@@ -39,7 +31,6 @@ class IdChecker: NSObject, NFCDelegate {
     }
     // Đọc NFC thất bại
     func NFCFail(_ error: NFCReader.NFCPassportReaderError) {
-        // Xử lý trong main queue
         if (self.handleCallback == nil) {
             return
         }
@@ -107,15 +98,9 @@ class IdChecker: NSObject, NFCDelegate {
         // Set Token
         nfc.setToken("")
         nfc.scanPassport()
-//        print("a:::",a)
-//        if (!!a) {
-            
-//        }
         nfc.delegate = self;
        self.handleCallback = callback
-        
  }
-
 }
 
 

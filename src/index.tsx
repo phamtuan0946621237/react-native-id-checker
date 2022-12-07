@@ -41,7 +41,6 @@ export function checkIdInfo({
   callBack: (value: any) => void
 }) {
   IdChecker.checkId(infoCard?.cardId,infoCard?.dateOfBirthYYMMDD,infoCard?.dateOfExpireYYMMDD,(value: any) => {
-    // console.log("heslo basby_____ :: ",value)
     if(!value) return
     if (!!callBack)  callBack(value)
   })
@@ -52,12 +51,3 @@ interface InfoCardIdType {
   dateOfBirthYYMMDD : string,
   dateOfExpireYYMMDD : string
 }
-
-// export function checkIdIos(
-//   params : InfoCardIdType,
-//   callBack ?: (value : any) => void) {
-//   NativeModules.IdChecker.checkId(params?.cardId,params?.dateOfBirthYYMMDD,params?.dateOfExpireYYMMDD,(value : any) => {
-//       console.log("value :::",value)
-//       if (!!callBack) callBack(value)
-//     },)
-// }
