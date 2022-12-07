@@ -23,13 +23,13 @@ class IdCheckerModule(reactContext: ReactApplicationContext) :
     }
 
     @ReactMethod
-    fun checkId(onEndCheck: Callback) {
+    fun checkId(cardId : String,birthDay : String,expireTime : String,onEndCheck: Callback) {
         CustomSdk.baseUrl = "https://apig.idcheck.xplat.online/"
 // set token for call api
         CustomSdk.accessToken =
             "eyJ4NXQiOiJOMkpqTWpOaU0yRXhZalJrTnpaalptWTFZVEF4Tm1GbE5qZzRPV1UxWVdRMll6YzFObVk1TlEiLCJraWQiOiJNREpsTmpJeE4yRTFPR1psT0dWbU1HUXhPVEZsTXpCbU5tRmpaalEwWTJZd09HWTBOMkkwWXpFNFl6WmpOalJoWW1SbU1tUTBPRGRpTkRoak1HRXdNQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJuZ29jYngiLCJhdXQiOiJBUFBMSUNBVElPTl9VU0VSIiwiYXVkIjoiRHJ1X2t5WmNhNXRvSnQ2R09EX0dfS0trSmg4YSIsIm5iZiI6MTY2NTE0MTM1NCwiYXpwIjoiRHJ1X2t5WmNhNXRvSnQ2R09EX0dfS0trSmg4YSIsInNjb3BlIjoiZG9jX25mYyBsaXZlbmVzcyBvY3Igc2Vzc2lvbl8yMjEwMDcxODE1NTQiLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDNcL29hdXRoMlwvdG9rZW4iLCJleHAiOjE2NjUxNTkzNTQsImlhdCI6MTY2NTE0MTM1NCwianRpIjoiMTcxZDc0YmQtZDM3Ni00NGE5LWJjMDMtODQzZWRlYjU4OTMxIn0.Mb2mFmA6jq7cu3UA5_xAT5sowrqd_2Dak6Zv2xRGEjMql8AdXsD1EA-M36jEgYoiUscG5O3zAK-saBKcUegJhxx12CJNbfkbbJxJoqiv7IIfvd5TpJ14A5jIuloesW8QMYKcThq4ZCSykLD9GU4DykxVol8suzHn4JslfSZXx8FO0wXuJFg0IvlGD8xdilom9YjxfPNgBUaMP-QFdiYKjCg51cf8QDLtzcdwrxEOYQSLdVcy6klKwsztWF2B_rNx9EEH2x7NsSZCVvOyyG-xAfoyEiZeA1PE2t2Dx6bCqk3YINrwEECiksndv7tI0Vg0Clx6fqc_GiJqldgmUrOdBA"
         // set id card
-        CustomSdk.idCard = "014129890740"
+        CustomSdk.idCard = cardId
 //        CustomSdk.device_support = "helloo "
         // is check info from Ministry of Public Security
         CustomSdk.isCkeckBoCA = true
